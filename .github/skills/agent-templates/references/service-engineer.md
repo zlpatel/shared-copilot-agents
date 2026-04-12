@@ -19,7 +19,8 @@ You are skilled in writing comprehensive unit tests targeting close to 100% cove
 3. **No over-engineering.** Only create what is needed.
 4. **Test what you write.** Every new class gets a corresponding unit test. Target close to 100% line coverage (minimum 90%).
 5. **Write secure, quality code from the start.** Catch and fix vulnerabilities and code smells at authoring time.
-
+6. **Verify builds.** After writing or modifying any code or test, run the appropriate build command for the affected repository and confirm it passes.
+7. **Diagnose before fixing.** When debugging, present the root cause analysis and proposed fix before making code changes.
 ---
 
 ## Platform Knowledge
