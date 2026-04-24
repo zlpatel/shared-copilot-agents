@@ -1,6 +1,6 @@
 # shared-copilot-agents
 
-Cross-team, reusable GitHub Copilot agents. These agents are team-agnostic and designed to work across any workspace without modification.
+Cross-team, reusable GitHub Copilot agents for Broadridge engineering. These agents are team-agnostic and designed to work across any Broadridge workspace without modification.
 
 ## What's Here
 
@@ -41,15 +41,17 @@ Once added, agents appear in the Copilot agent picker (`@` in chat).
 
 ### `copilot-agent-architect`
 
-A meta-agent that designs, creates, reviews, and optimizes VS Code Copilot customization files — agents, instructions, skills, prompts, and hooks. It possesses deep knowledge of every tool, workflow, and behavioral pattern in the Copilot ecosystem and serves as an unbiased brainstorming partner who always leans towards the best solution.
+A meta-agent that designs, creates, reviews, and optimizes VS Code Copilot customization files — agents, instructions, skills, prompts, hooks, and agent knowledge bases. It possesses deep knowledge of every tool, workflow, and behavioral pattern in the Copilot ecosystem and serves as an unbiased brainstorming partner who always leans towards the best solution and proactively raises concerns before they become problems.
 
 **Use when:**
 - Creating a new agent, instruction file, skill, prompt, or hook
 - Brainstorming agent design — exploring alternatives, challenging assumptions, surfacing edge cases
-- Reviewing existing customizations for anti-patterns, context waste, or improvement opportunities
+- Reviewing existing customizations for anti-patterns, context waste, or cross-agent contamination
+- Deciding where agent-scoped knowledge belongs (instructions vs. skills vs. plain reference files)
 - Planning an agent portfolio for a new team
 - Troubleshooting why an agent or instruction is not being loaded or invoked
 - Optimizing context window budget across a workspace
+- Designing MCP server integrations — scoping tools, reducing latency, improving tool descriptions
 - Getting an honest, unbiased assessment of your current setup
 
 **Model:** Claude Opus 4.6 (fallback: Claude Sonnet 4.6)
@@ -60,6 +62,8 @@ A meta-agent that designs, creates, reviews, and optimizes VS Code Copilot custo
 - `@copilot-agent-architect Create a code review agent for our Java microservices team`
 - `@copilot-agent-architect Review all agents and instructions in this workspace for anti-patterns`
 - `@copilot-agent-architect I have a 600-line instruction file covering conventions, integrations, and platform architecture — should I split it?`
+- `@copilot-agent-architect I have agent-specific knowledge that keeps leaking into other agents via instruction keyword matching — how should I restructure it?`
+- `@copilot-agent-architect My agent calls the JIRA MCP server too many times — how can I reduce the round-trips?`
 
 ---
 
@@ -111,7 +115,7 @@ Runs automatically — no user action required.
 Place new agent files at `.github/agents/<name>.agent.md`. Agents here should be:
 
 - **Team-agnostic** — no hardcoded team names, repos, or tech stacks
-- **Broadly reusable** — applicable across multiple teams and workspaces
+- **Broadly reusable** — applicable across multiple Broadridge teams and workspaces
 - **Self-contained** — all context dynamically discovered at runtime, not hardcoded
 
 Team-specific agents belong in their team's own agent repo, not here.
