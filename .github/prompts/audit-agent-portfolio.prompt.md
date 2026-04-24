@@ -27,6 +27,7 @@ For each file, classify its context loading behavior:
 | **Always-on** | `applyTo: "**"` or workspace instructions |
 | **File-scoped** | `applyTo` with specific glob pattern |
 | **On-demand** | Loaded via `description` keyword match only |
+| **Agent-scoped** | Plain `.md` files in `agent-knowledge/` referenced only from a specific agent's body |
 | **User-invoked** | Agents, prompts, skills triggered by user |
 
 Calculate the total line count of all always-on content. Flag if it appears excessive (guideline: always-on content should be < 30% of estimated context budget, roughly under 1500 lines combined).
@@ -47,6 +48,7 @@ Check every discovered file against these anti-patterns:
 | **Dead description** | Description keywords do not match how users actually phrase tasks |
 | **Name mismatch** | Skill folder name does not match `name` field in frontmatter |
 | **YAML syntax risk** | Unquoted descriptions containing colons, tabs in frontmatter |
+| **Cross-agent contamination** | Agent-specific knowledge in an instruction file with `description:` keywords that match other agents' domains |
 
 ## Step 4 — Agent Boundary Check
 
